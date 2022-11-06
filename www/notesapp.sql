@@ -1,0 +1,10 @@
+CREATE DATABASE IF NOT EXISTS `notesapp` 
+USE `notesapp`;
+
+
+CREATE TABLE IF NOT EXISTS `notes` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `note` text DEFAULT NULL,
+  `time` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

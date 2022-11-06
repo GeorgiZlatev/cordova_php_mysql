@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html"; charset="utf-8"/>
+
+        <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+        <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+        <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+        <meta name="color-scheme" content="light dark">
+        <link rel="stylesheet" href="css/index.css">
+        <title>Hello World</title>
+    </head>
+    <body>
+
+<script>
+
+    
+            function deleteRowFn(id) {
+                //Delete Row Function ...
+                    console.log("DeleteRow Executed");
+                    console.log(id);
+                    var dataString = "id=" + id + "";
+                    console.log(dataString);
+
+                    $.ajax({
+                        type: "GET",
+                        url: "https://192.168.0.100/cordova/NoteApp/www/delete.php",
+                        data: dataString,
+                        crossDomain: true,
+                        cache: false,
+                        beforeSend: function () {
+                        },
+                        success: function (data) {
+                            console.log(data);
+                            var result = data.toString().trim();
+                            if (result === "success") {
+                                alert("Row Deleted");
+
+                            } else if (result === "error") {
+                                alert("Error");
+                            }
+
+                            else {
+                                alert("Unknown error Occurred ?");
+                            }
+                        }
+                    });
+            }
+
+        </script>
+
+        <textarea id="note" placeholder="Enter Note ..."></textarea></br>
+        <button id="saveNote">Save Note</button>
+        <button id="getNote">Get Note</button>
+
+        <table style="width:100%" id="dataTable" border="1">
+            <tr>
+                <th>ID</th>
+                <th>Note</th>
+                <th>Time</th>
+                <th>Delete</th>
+            </tr>
+        </table>
+
+        <script src="cordova.js"></script>
+        <script src="js/index.js"></script>
+    </body>
+</html>
